@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>移动待办事项</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1><i class="fas fa-check-circle"></i> 待办事项</h1>
+                <div class="date-display" id="current-date">2026年3月6日 星期五</div>
+            </div>
+            <div class="stats">
+                <span class="stat-item"><i class="fas fa-tasks"></i> <span id="total-tasks">0</span> 任务</span>
+                <span class="stat-item"><i class="fas fa-check"></i> <span id="completed-tasks">0</span> 完成</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="input-section">
+                <div class="input-group">
+                    <input type="text" id="task-input" placeholder="添加新任务..." autocomplete="off">
+                    <button id="add-task-btn" class="add-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="category-selector">
+                    <button class="category-btn active" data-category="all">全部</button>
+                    <button class="category-btn" data-category="work">工作</button>
+                    <button class="category-btn" data-category="personal">个人</button>
+                    <button class="category-btn" data-category="shopping">购物</button>
+                </div>
+            </div>
+
+            <div class="tasks-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-list"></i> 今日任务</h2>
+                    <button id="clear-completed" class="clear-btn">清除已完成</button>
+                </div>
+                
+                <div class="tasks-list" id="tasks-list">
+                    <!-- 任务将通过JS动态添加 -->
+                    <div class="empty-state">
+                        <i class="fas fa-clipboard-list"></i>
+                        <p>还没有任务，添加一个吧！</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <button class="action-btn" id="add-quick-note">
+                    <i class="fas fa-sticky-note"></i>
+                    <span>快速笔记</span>
+                </button>
+                <button class="action-btn" id="set-reminder">
+                    <i class="fas fa-bell"></i>
+                    <span>设置提醒</span>
+                </button>
+                <button class="action-btn" id="share-list">
+                    <i class="fas fa-share-alt"></i>
+                    <span>分享列表</span>
+                </button>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>© 2026 移动待办事项 · 数据保存在本地</p>
+            <p class="footer-note">点击任务标记完成，长按删除</p>
+        </footer>
+    </div>
+
+    <!-- 快速笔记模态框 -->
+    <div class="modal" id="note-modal">
+        <div class="modal-content">
+            <h3><i class="fas fa-sticky-note"></i> 快速笔记</h3>
+            <textarea id="note-text" placeholder="写下你的笔记..."></textarea>
+            <div class="modal-actions">
+                <button class="modal-btn cancel" id="cancel-note">取消</button>
+                <button class="modal-btn save" id="save-note">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
